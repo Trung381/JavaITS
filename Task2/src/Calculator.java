@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Calculator {
-    public void runCalculator() {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Nhập số thứ nhất: ");
@@ -39,5 +39,7 @@ public class Calculator {
                 System.out.println("Phép toán không hợp lệ.");
                 break;
         }
+
+        scanner.close();
     }
 }
