@@ -18,7 +18,7 @@ public class Customer {
     public static void updateCustomer() {
         System.out.print("Nhập mã khách hàng cần cập nhật: ");
         String customerID = scanner.nextLine();
-        if (customers.containsKey(customerID)) {
+        if (customers.containsKey(customerID)) { // containsKey check hashmap có phần tử nào chứ key z không
             System.out.print("Nhập tên mới cho khách hàng: ");
             String newName = scanner.nextLine();
             customers.put(customerID, newName);

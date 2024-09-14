@@ -53,7 +53,7 @@ public class Fraction {
         this.denominator /= gcd;
     }
 
-    // tim ucln de rut gon ps
+    // tim ucln de rut gon ps bằng euclid
     private int gcd(int a, int b) {
         if (b == 0) {
             return a;
@@ -66,6 +66,11 @@ public class Fraction {
         if (denominator == 1) {
             return String.valueOf(numerator);  // Nếu mẫu số là 1, chỉ hiển thị tử số
         }
+        if(denominator <0){
+            numerator = - numerator;
+            denominator = - denominator;
+        }
         return numerator + "/" + denominator;
     }
+
 }
