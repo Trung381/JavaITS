@@ -5,7 +5,9 @@ public class Fraction {
     // Constructor
     public Fraction(int numerator, int denominator) {
         if (denominator == 0) {
-            throw new IllegalArgumentException("Mẫu số không được bằng 0.");
+//            throw new IllegalArgumentException("Mẫu số không được bằng 0.");
+//            throw new IndexOutOfBoundsException("Mẫu số không được bằng 0.");
+            throw new ArithmeticException("Mẫu số không được bằng 0.");
         }
         this.numerator = numerator;
         this.denominator = denominator;
@@ -61,7 +63,8 @@ public class Fraction {
         return gcd(b, a % b);
     }
 
-    // Phương thức hiển thị phân số
+    // Phương thức hiển thị phân số, hàm được gọi tự động khi print phân số
+    @Override
     public String toString() {
         if (denominator == 1) {
             return String.valueOf(numerator);  // Nếu mẫu số là 1, chỉ hiển thị tử số

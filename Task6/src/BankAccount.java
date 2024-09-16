@@ -32,9 +32,6 @@ class BankAccount {
         return balance;
     }
 
-    public String getAccountNumber() {
-        return accountNumber;
-    }
 
 }
 

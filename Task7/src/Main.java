@@ -21,7 +21,7 @@ public class Main {
 
                     employees.add(new FullTimeEmployee("Vũ Văn Trung", 20, 15000000));
 
-                    employees.add(new PartTimeEmployee("Ai đó 1", 22, 50000, 120));  // 120 giờ làm việc
+                    employees.add(new PartTimeEmployee("Ai đó 1", 22, 50000, 120));
 
                     for (Employee employee : employees) {
                         employee.displayInfo();

@@ -11,7 +11,7 @@ public class Customer {
         String customerID = scanner.nextLine();
         System.out.print("Nhập tên khách hàng: ");
         String customerName = scanner.nextLine();
-        customers.put(customerID, customerName);
+        customers.put(customerID, customerName); // put để thêm vào hashmap
         System.out.println("Đã thêm khách hàng thành công.");
     }
 
@@ -31,7 +31,7 @@ public class Customer {
     public static void deleteCustomer() {
         System.out.print("Nhập mã khách hàng cần xóa: ");
         String customerID = scanner.nextLine();
-        if (customers.remove(customerID) != null) {
+        if (customers.remove(customerID) != null) { // remove cũng là kiểu bool
             System.out.println("Đã xóa khách hàng thành công.");
         } else {
             System.out.println("Không tìm thấy khách hàng.");
@@ -53,7 +53,7 @@ public class Customer {
             System.out.println("Chưa có khách hàng nào trong danh sách.");
         } else {
             System.out.println("Danh sách khách hàng:");
-            for (Map.Entry<String, String> entry : customers.entrySet()) {
+            for (Map.Entry<String, String> entry : customers.entrySet()) { // sử dụng entrySet duyệt for
                 System.out.println("Mã khách hàng: " + entry.getKey() + ", Tên khách hàng: " + entry.getValue());
             }
         }
