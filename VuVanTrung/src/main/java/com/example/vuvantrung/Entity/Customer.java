@@ -1,19 +1,20 @@
-package com.example.vuvantrung.Model;
+package com.example.vuvantrung.Entity;
 
-public class User {
+public class Customer {
     private Long id;
     private String name;
     private String email;
 
-    public User() {}
+    // Default constructor
+    public Customer() {
+    }
 
-    public User(Long id, String name, String email) {
+    public Customer(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
     }
 
-    // Getters và Setters
     public Long getId() {
         return id;
     }

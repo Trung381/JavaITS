@@ -24,13 +24,31 @@ repositories {
 }
 
 dependencies {
+    // Spring Boot starter dependencies
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Lombok for code generation
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // Test dependencies
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation 'org.slf4j:slf4j-api:1.7.32'
-    implementation 'ch.qos.logback:logback-classic:1.2.6'
+
+    // Use SLF4J with Logback as the logging backend
+    implementation 'org.slf4j:slf4j-api:2.0.9'  // Latest SLF4J API
+    implementation 'ch.qos.logback:logback-classic:1.4.12'  // Latest Logback
+
+    // Database runtime dependencies
+//    implementation 'mysql:mysql-connector-java:8.2.0'
+//    runtimeOnly 'mysql:mysql-connector-java:8.1.0'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:3.1.2'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.1.2' 
+    implementation 'mysql:mysql-connector-java:8.0.32'
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {
