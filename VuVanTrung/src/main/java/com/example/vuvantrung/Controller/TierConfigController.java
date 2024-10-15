@@ -16,7 +16,7 @@ public class TierConfigController {
 
     @PostMapping
     public ResponseEntity<TierConfig> createTierConfig(@RequestBody TierConfig tierConfig){
-        TierConfig savedTier = tierConfigService.createOrUpdateTierConfig(tierConfig);
+        TierConfig savedTier = tierConfigService.createTierConfig(tierConfig);
         return ResponseEntity.ok(savedTier);
     }
 

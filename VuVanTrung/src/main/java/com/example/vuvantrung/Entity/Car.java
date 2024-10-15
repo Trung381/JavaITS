@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // Auto-generates the primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates the primary key
     private Integer id;
 
     private String make;

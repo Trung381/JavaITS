@@ -1,48 +1,46 @@
 package com.example.vuvantrung.Controller;
 
 import com.example.vuvantrung.Entity.Car;
-import com.example.vuvantrung.Repository.CarRepository;
 import com.example.vuvantrung.Service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller // This marks the class as a controller
-@RequestMapping(path = "/cars") // URL starts with /cars
+import java.util.Optional;
+
+@Controller
+@RequestMapping(path = "/cars")
 public class CarController {
 
-    @Autowired // This injects the CarRepository bean automatically
-    private CarRepository carRepository;
+    @Autowired
+    private CarService carService;
 
 
-    @PostMapping(path = "/add") // Map ONLY POST Requests
+    @PostMapping(path = "/add")
     public @ResponseBody String addNewCar(@RequestBody Car car) {
-        // Lưu đối tượng Car vào cơ sở dữ liệu
-        carRepository.save(car);
+        carService.addCar(car);
         return "Saved";
     }
 
-
-    @GetMapping(path = "/all") // Map GET requests to fetch all cars
-    public @ResponseBody Iterable<Car> getAllCars() {
-        // Return a list of all cars in the repository
-        return carRepository.findAll();
+    @GetMapping("/{id}")
+    public @ResponseBody Optional<Car> getCarById(@PathVariable int id){
+        return carService.getCarById(id);
     }
 
-    @PutMapping(path = "/update/{id}") // Map PUT requests to update a car
+    @GetMapping(path = "/all")
+    public @ResponseBody Iterable<Car> getAllCars() {
+        return carService.getAllCar();
+    }
+
+    @PutMapping(path = "/update/{id}")
     public @ResponseBody String updateCar(@PathVariable Integer id, @RequestBody Car carDetails) {
-        Car car = carRepository.findById(id).orElseThrow(() -> new RuntimeException("Car not found"));
-        car.setMake(carDetails.getMake());
-        car.setModel(carDetails.getModel());
-        car.setYear(carDetails.getYear());
-        carRepository.save(car);
+        carService.updateCar(id, carDetails);
         return "Updated";
     }
 
-    @DeleteMapping(path = "/delete/{id}") // Map DELETE requests to delete a car
+    @DeleteMapping(path = "/delete/{id}")
     public @ResponseBody String deleteCar(@PathVariable Integer id) {
-        Car car = carRepository.findById(id).orElseThrow(() -> new RuntimeException("Car not found"));
-        carRepository.delete(car);
+        carService.deleteCar(id);
         return "Deleted";
     }
 }

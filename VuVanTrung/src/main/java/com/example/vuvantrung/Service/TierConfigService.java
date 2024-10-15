@@ -2,19 +2,20 @@ package com.example.vuvantrung.Service;
 
 import com.example.vuvantrung.Entity.TierConfig;
 import com.example.vuvantrung.Repository.TierConfigRepository;
-import org.checkerframework.framework.qual.DefaultQualifierForUse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class TierConfigService {
     @Autowired
     private TierConfigRepository tierConfigRepository;
 
-    public TierConfig createOrUpdateTierConfig(TierConfig tierConfig){
+    public TierConfig createTierConfig(TierConfig tierConfig){
         return tierConfigRepository.save(tierConfig);
     }
 
@@ -27,6 +28,7 @@ public class TierConfigService {
         if(tierConfigOptional.isPresent()){
             TierConfig tierConfig = tierConfigOptional.get();
             tierConfigRepository.deleteById(id);
+            log.warn("tier config has max usage {} has been deleted", tierConfig.getMaxUsage());
             return tierConfig;
         }
         else {
@@ -40,12 +42,11 @@ public class TierConfigService {
         if (tierConfigOptional.isPresent()) {
             TierConfig existingTierConfig = tierConfigOptional.get();
 
-            // Cập nhật các thuộc tính
             existingTierConfig.setMinUsage(updatedTierConfig.getMinUsage());
             existingTierConfig.setMaxUsage(updatedTierConfig.getMaxUsage());
             existingTierConfig.setPrice(updatedTierConfig.getPrice());
 
-            // Lưu lại thay đổi
+            log.info("updated successfully !\nmin usage: {}\nmax usage: {}\nprice: {}", existingTierConfig.getMinUsage(), existingTierConfig.getMaxUsage(), existingTierConfig.getPrice());
             return tierConfigRepository.save(existingTierConfig);
         } else {
             throw new Exception("Không tìm thấy TierConfig với ID: " + id);

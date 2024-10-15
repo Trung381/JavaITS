@@ -2,7 +2,10 @@ package com.example.vuvantrung.Service;
 
 import com.example.vuvantrung.Entity.TierConfig;
 import com.example.vuvantrung.Entity.UsageHistory;
+import com.example.vuvantrung.Entity.User;
+import com.example.vuvantrung.Exception.UserNotFoundException;
 import com.example.vuvantrung.Repository.UsageHistoryRepository;
+import com.example.vuvantrung.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,34 +19,37 @@ public class UsageHistoryService {
     private UsageHistoryRepository usageHistoryRepository;
 
     @Autowired
-    private TierConfigService tierConfigService;
+    private UserService userService;
 
-    public UsageHistory caculateAndSaveUSage(int eUsed, LocalDate date){
+    @Autowired
+    private TierConfigService tierConfigService;
+    @Autowired
+    private UserRepository userRepository;
+
+    public double calculateCost(int eUsed){
         List<TierConfig> tiers = tierConfigService.getAllTierConfigs();
         double cost = 0;
         int remaining = eUsed;
         for(TierConfig tier : tiers){
-//            if(remaining > 0 && remaining > tier.getMinUsage()){
-//                int usageInTier = (tier.getMaxUsage() > 0) ? Math.min(remaining, tier.getMaxUsage() - tier.getMinUsage()) : remaining; // Nếu maxUsage là 0 (hoặc không giới hạn), dùng toàn bộ remaining
-//                cost += tier.getPrice()*usageInTier;
-//                remaining -= usageInTier;
-//            }
             int usageInTier = Math.min(remaining, tier.getMaxUsage() - tier.getMinUsage()+1);
             cost += usageInTier*tier.getPrice();
             remaining -= usageInTier;
             if (remaining <= 0) {
-                break;  // Nếu kWh còn lại đã hết, dừng vòng lặp
+                break;
             }
         }
+        return cost;
+    }
 
-        UsageHistory usageHistory = new UsageHistory(date, eUsed, cost);
-
-//        UsageHistory usageHistory = new UsageHistory();
-//        usageHistory.setDate(date);
-//        usageHistory.seteUsed(eUsed);
-//        usageHistory.setAmount(cost);
-
-        return usageHistoryRepository.save(usageHistory);
+    public UsageHistory saveUsage(int eUsed, LocalDate date, int userId) {
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            double cost = calculateCost(eUsed);
+            UsageHistory usageHistory = new UsageHistory(date, eUsed, cost, user.get());
+            return usageHistoryRepository.save(usageHistory);
+        } else {
+            throw new UserNotFoundException("Người dùng với ID: " + userId + " không tồn tại.");
+        }
     }
 
     public List<UsageHistory> getAllUsageHistory(){
@@ -67,15 +73,19 @@ public class UsageHistoryService {
         if (usageHistoryOptional.isPresent()) {
             UsageHistory existingUsageHistory = usageHistoryOptional.get();
 
-            // Cập nhật các thuộc tính
             existingUsageHistory.setDate(updatedUsageHistory.getDate());
             existingUsageHistory.seteUsed(updatedUsageHistory.geteUsed());
             existingUsageHistory.setAmount(updatedUsageHistory.getAmount());
 
-            // Lưu lại thay đổi
             return usageHistoryRepository.save(existingUsageHistory);
         } else {
             throw new Exception("Không tìm thấy UsageHistory với ID: " + id);
         }
     }
+
+    public List<UsageHistory> getUsageHistoryByUsername(Integer id) {
+        return usageHistoryRepository.findAllByUserId(id);
+    }
+
+
 }
