@@ -52,5 +52,9 @@ public class TierConfigService {
             throw new Exception("Không tìm thấy TierConfig với ID: " + id);
         }
     }
+
+    public TierConfig getTierConfigWithMaxUsage() {
+        return tierConfigRepository.findTierConfigWithMaxUsageNative();
+    }
 }
 

@@ -26,14 +26,25 @@ public class UsageHistoryService {
     @Autowired
     private UserRepository userRepository;
 
+
+
     public double calculateCost(int eUsed){
         List<TierConfig> tiers = tierConfigService.getAllTierConfigs();
         double cost = 0;
         int remaining = eUsed;
+        TierConfig tierHasMaxUsage = tierConfigService.getTierConfigWithMaxUsage();
+        int usageInTier = 0;
         for(TierConfig tier : tiers){
-            int usageInTier = Math.min(remaining, tier.getMaxUsage() - tier.getMinUsage()+1);
-            cost += usageInTier*tier.getPrice();
-            remaining -= usageInTier;
+//            int usageInTier = Math.min(remaining, tier.getMaxUsage() - tier.getMinUsage()+1);
+            if(tier.getMaxUsage() != tierHasMaxUsage.getMaxUsage()){
+                usageInTier = Math.min(remaining, tier.getMaxUsage() - tier.getMinUsage()+1);
+                cost += usageInTier*tier.getPrice();
+                remaining -= usageInTier;
+            } else{
+                usageInTier = remaining;
+                cost += usageInTier*tier.getPrice();
+                remaining = 0;
+            }
             if (remaining <= 0) {
                 break;
             }
