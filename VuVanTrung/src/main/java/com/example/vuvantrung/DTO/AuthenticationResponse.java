@@ -1,6 +1,6 @@
 package com.example.vuvantrung.DTO;
 
-import com.example.vuvantrung.Entity.User;
+import com.example.vuvantrung.entity.User;
 
 import java.util.HashMap;
 import java.util.Map;

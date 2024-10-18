@@ -13,8 +13,8 @@ package com.example.vuvantrung.config;
 //        return new InMemoryUserDetailsManager(admin, user);
 //    }
 
-import com.example.vuvantrung.Repository.UserRepository;
-import com.example.vuvantrung.Security.JwtAuthenticationFilter;
+import com.example.vuvantrung.repository.UserRepository;
+import com.example.vuvantrung.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

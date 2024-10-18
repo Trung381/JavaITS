@@ -4,6 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="myService" class="com.example.vuvantrung.Service.MyServiceImpl"/>
+    <bean id="myService" class="com.example.vuvantrung.service.MyServiceImpl"/>
 
 </beans>
