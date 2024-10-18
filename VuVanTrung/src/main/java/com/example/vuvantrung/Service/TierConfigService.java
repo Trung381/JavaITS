@@ -23,38 +23,36 @@ public class TierConfigService {
         return tierConfigRepository.findAllByOrderByMinUsageAsc();
     }
 
-    public TierConfig deleteTierConfigById(Long id) throws Exception {
+    public TierConfig deleteTierConfigById(Long id) {
         Optional<TierConfig> tierConfigOptional = tierConfigRepository.findById(id);
-        if(tierConfigOptional.isPresent()){
-            TierConfig tierConfig = tierConfigOptional.get();
-            tierConfigRepository.deleteById(id);
-            log.warn("tier config has max usage {} has been deleted", tierConfig.getMaxUsage());
-            return tierConfig;
+        if (tierConfigOptional.isEmpty()) {
+            throw new RuntimeException("TierConfig with ID " + id + " not found.");
         }
-        else {
-            String s = "ko co tier co id " + id;
-            throw new Exception(s);
-        }
+        TierConfig tierConfig = tierConfigOptional.get();
+        tierConfigRepository.deleteById(id);
+        log.warn("TierConfig with max usage {} has been deleted", tierConfig.getMaxUsage());
+        return tierConfig;
     }
 
-    public TierConfig updateTierConfig(Long id, TierConfig updatedTierConfig) throws Exception {
+    public TierConfig updateTierConfig(Long id, TierConfig updatedTierConfig) {
         Optional<TierConfig> tierConfigOptional = tierConfigRepository.findById(id);
-        if (tierConfigOptional.isPresent()) {
-            TierConfig existingTierConfig = tierConfigOptional.get();
-
-            existingTierConfig.setMinUsage(updatedTierConfig.getMinUsage());
-            existingTierConfig.setMaxUsage(updatedTierConfig.getMaxUsage());
-            existingTierConfig.setPrice(updatedTierConfig.getPrice());
-
-            log.info("updated successfully !\nmin usage: {}\nmax usage: {}\nprice: {}", existingTierConfig.getMinUsage(), existingTierConfig.getMaxUsage(), existingTierConfig.getPrice());
-            return tierConfigRepository.save(existingTierConfig);
-        } else {
-            throw new Exception("Không tìm thấy TierConfig với ID: " + id);
+        if (tierConfigOptional.isEmpty()) {
+            throw new RuntimeException("TierConfig with ID " + id + " not found.");
         }
+        TierConfig existingTierConfig = tierConfigOptional.get();
+
+        existingTierConfig.setMinUsage(updatedTierConfig.getMinUsage());
+        existingTierConfig.setMaxUsage(updatedTierConfig.getMaxUsage());
+        existingTierConfig.setPrice(updatedTierConfig.getPrice());
+
+        log.info("Updated successfully! Min usage: {}, Max usage: {}, Price: {}",
+                existingTierConfig.getMinUsage(), existingTierConfig.getMaxUsage(), existingTierConfig.getPrice());
+
+        return tierConfigRepository.save(existingTierConfig);
     }
 
     public TierConfig getTierConfigWithMaxUsage() {
+        // Business logic to get tier config with max usage
         return tierConfigRepository.findTierConfigWithMaxUsageNative();
     }
 }
-

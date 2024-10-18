@@ -1,18 +1,18 @@
 package com.example.vuvantrung.Controller;
 
+import com.example.vuvantrung.DTO.ApiResponse;
 import com.example.vuvantrung.Entity.UsageHistory;
-import com.example.vuvantrung.Entity.User;
-import com.example.vuvantrung.Repository.UsageHistoryRepository;
 import com.example.vuvantrung.Service.UsageHistoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -21,55 +21,60 @@ public class UsageHistoryController {
     @Autowired
     UsageHistoryService usageHistoryService;
 
-    @PostMapping("/create_usage_history_by_admin")
-    public ResponseEntity<UsageHistory> createUsageHistoryByAdmin(@RequestBody Map<String, Object> request){
-        int eUsed = (int) request.get("eUsed");
-        LocalDate date = LocalDate.parse((String) request.get("date"));
-        int userId = (int) request.get("userId");
+//    @PostMapping("/create_usage_history")
+//    public ResponseEntity<UsageHistory> createUsageHistoryByAdmin(@RequestBody Map<String, Object> request) {
+//        return ResponseEntity.ok(usageHistoryService.saveUsage(
+//                (int) request.get("eUsed"),
+//                LocalDate.parse((String) request.get("date")),
+//                (int) request.get("userId")
+//        ));
+//    }
+@PostMapping("/create_usage_history")
+public ApiResponse<UsageHistory> createUsageHistoryByAdmin(@RequestBody Map<String, Object> request) {
 
-        UsageHistory saved = usageHistoryService.saveUsage(eUsed, date, userId);
-        log.info("new usage history of user with id: {} has been added", userId);
-        return ResponseEntity.ok(saved);
+    return usageHistoryService.saveUsage(
+            (int) request.get("eUsed"),
+            LocalDate.parse((String) request.get("date")),
+            (int) request.get("userId")
+    );
+}
 
-    }
-
-    @GetMapping
-    public ResponseEntity<List<UsageHistory>> getAllUsageHistory(){
+    @GetMapping("/get_all_history")
+    public ResponseEntity<List<UsageHistory>> getAllUsageHistory() {
         return ResponseEntity.ok(usageHistoryService.getAllUsageHistory());
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<UsageHistory> deleteUsageHistoryById(@PathVariable Long id){
-        try{
-            UsageHistory deletedHistory = usageHistoryService.deleteUsageHistoryById(id);
-            log.info("deleted usage history has id {}", id);
-            return ResponseEntity.ok(deletedHistory);
-        }
-        catch (Exception e){
-            return ResponseEntity.notFound().build();
-        }
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<UsageHistory> deleteUsageHistoryById(@PathVariable Long id) {
+        return ResponseEntity.ok(usageHistoryService.deleteUsageHistoryById(id));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<UsageHistory> updateUsageHistory(@PathVariable Long id, @RequestBody UsageHistory updatedUsageHistory) {
-        try {
-            UsageHistory updatedHistory = usageHistoryService.updateUsageHistory(id, updatedUsageHistory);
-            log.info("usage history has id {} is updated", id);
-            return ResponseEntity.ok(updatedHistory);
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(usageHistoryService.updateUsageHistory(id, updatedUsageHistory));
     }
 
-    @GetMapping("/user/{id}")
-    public ResponseEntity<List<UsageHistory>> getUsageHistoryByUsername(@PathVariable Integer id) {
-        List<UsageHistory> usageHistories = usageHistoryService.getUsageHistoryByUsername(id);
-        if (!usageHistories.isEmpty()) {
-            return ResponseEntity.ok(usageHistories);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping("/usage_history_by_user_id/{id}")
+    public ResponseEntity<List<UsageHistory>> getUsageHistoryByUserId(@PathVariable Integer id) {
+        return ResponseEntity.ok(usageHistoryService.getUsageHistoryByUserId(id));
     }
+
+    @GetMapping("/usage_history_not_paid_by_user_id/{id}")
+    public ResponseEntity<List<UsageHistory>> getUsageHistoryNotPaidByUserId(@PathVariable Integer id){
+        return ResponseEntity.ok(usageHistoryService.getUsageHistoryHasNotPaiByIdUser(id));
+    }
+    
+//    @GetMapping("/pay_electic_bill_by_id_user_and_month")
+//    public ResponseEntity<Optional<List<UsageHistory>>> payElectricBillByIdUserAndMonth(@RequestParam Integer id, @RequestParam int month) throws Exception {
+//        return ResponseEntity.ok(usageHistoryService.payElectricityBillHasNotPaidByUserIdAndMonth(id, month));
+//    }
+
+    @GetMapping("/pay_electric_bill_by_id_user_and_month")
+    public ResponseEntity<UsageHistory> payElectricBillByIdUserAndMonth(@RequestParam Integer id, @RequestParam int month) {
+
+//        return ResponseEntity.ok("Electric bill has been paid for user with ID " + id + " for month " + month);
+        return ResponseEntity.ok(usageHistoryService.payElectricityBillHasNotPaidByUserIdAndMonth(id, month));
+    }
+
 
 }

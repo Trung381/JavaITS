@@ -13,54 +13,6 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-
-//@RestController
-//@RequestMapping("/api/v1/auth")
-//public class AuthController {
-//
-//    private JwtService jwtService;
-//
-//    private final AuthenticationService authenticationService;
-//
-//    // thêm để làm invalidate token
-//    private final BlacklistedTokenRepository blacklistedTokenRepository;
-//
-//    public AuthController(AuthenticationService authenticationService, BlacklistedTokenRepository blacklistedTokenRepository) {
-//        this.authenticationService = authenticationService;
-//        // thêm để invalidate token
-//        this.blacklistedTokenRepository = blacklistedTokenRepository;
-//    }
-//
-//    @PostMapping("/register")
-//    public ResponseEntity<User> register(@RequestBody RegisterRequest request) {
-//        return ResponseEntity.ok(authenticationService.register(request));
-//    }
-////    @PostMapping("/register")
-////    public String register(@RequestBody RegisterRequest request) {
-////        authenticationService.register(request);
-////        return "haizzz";
-////    }
-//
-//    @PostMapping("/authenticate")
-//    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
-//        return ResponseEntity.ok(authenticationService.authenticate(request));
-//    }
-//
-//    @PostMapping("/logout")
-//    public ResponseEntity<String> logout(HttpServletRequest request) {
-//        final String header = request.getHeader("Authorization");
-//        if (header == null || !header.startsWith("Bearer ")) {
-//            return ResponseEntity.badRequest().body("Invalid token");
-//        }
-//        final String token = header.substring(7);
-//
-//        BlacklistedToken blacklistedToken = new BlacklistedToken(token, LocalDateTime.now());
-//        blacklistedTokenRepository.save(blacklistedToken);
-//
-//        return ResponseEntity.ok("Logged out successfully, token invalidated");
-//    }
-//}
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -74,10 +26,6 @@ public class AuthController {
         this.blacklistedTokenRepository = blacklistedTokenRepository;
     }
 
-//    @PostMapping("/register")
-//    public ResponseEntity<User> register(@Valid @RequestBody RegisterRequest request) {
-//        return ResponseEntity.ok(authenticationService.register(request));
-//    }
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authenticationService.register(request));
@@ -88,18 +36,28 @@ public class AuthController {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
+//    @PostMapping("/logout")
+//    public ResponseEntity<String> logout(HttpServletRequest request) {
+//        final String header = request.getHeader("Authorization");
+//        if (header == null || !header.startsWith("Bearer ")) {
+//            return ResponseEntity.badRequest().body("Invalid token");
+//        }
+//        final String token = header.substring(7);
+//
+//        BlacklistedToken blacklistedToken = new BlacklistedToken(token, LocalDateTime.now());
+//        blacklistedTokenRepository.save(blacklistedToken);
+//
+//        return ResponseEntity.ok("Logged out successfully, token invalidated");
+//    }
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletRequest request) {
-        final String header = request.getHeader("Authorization");
-        if (header == null || !header.startsWith("Bearer ")) {
-            return ResponseEntity.badRequest().body("Invalid token");
+        try {
+            String token = authenticationService.extractToken(request);
+            authenticationService.logout(token);
+            return ResponseEntity.ok("Logged out successfully, token invalidated");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-        final String token = header.substring(7);
-
-        BlacklistedToken blacklistedToken = new BlacklistedToken(token, LocalDateTime.now());
-        blacklistedTokenRepository.save(blacklistedToken);
-
-        return ResponseEntity.ok("Logged out successfully, token invalidated");
     }
 }
 

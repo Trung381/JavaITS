@@ -16,35 +16,21 @@ public class TierConfigController {
 
     @PostMapping
     public ResponseEntity<TierConfig> createTierConfig(@RequestBody TierConfig tierConfig){
-        TierConfig savedTier = tierConfigService.createTierConfig(tierConfig);
-        return ResponseEntity.ok(savedTier);
+        return ResponseEntity.ok(tierConfigService.createTierConfig(tierConfig));
     }
 
     @GetMapping
     public ResponseEntity<List<TierConfig>> getAllTierConfigs(){
-        List<TierConfig> allTier = tierConfigService.getAllTierConfigs();
-        return ResponseEntity.ok(allTier);
+        return ResponseEntity.ok(tierConfigService.getAllTierConfigs());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<TierConfig> deleteTierConfigById(@PathVariable Long id){
-        try{
-            TierConfig tierConfig = tierConfigService.deleteTierConfigById(id);
-            return ResponseEntity.ok(tierConfig);
-        }
-        catch (Exception e){
-            return ResponseEntity.noContent().build();
-        }
+        return ResponseEntity.ok(tierConfigService.deleteTierConfigById(id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<TierConfig> updateTierConfig(@PathVariable Long id, @RequestBody TierConfig updatedTierConfig) {
-        try {
-            TierConfig updatedConfig = tierConfigService.updateTierConfig(id, updatedTierConfig);
-            return ResponseEntity.ok(updatedConfig);
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(tierConfigService.updateTierConfig(id, updatedTierConfig));
     }
 }
-

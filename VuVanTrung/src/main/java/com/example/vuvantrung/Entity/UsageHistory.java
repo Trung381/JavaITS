@@ -58,6 +58,7 @@ public class UsageHistory {
     private LocalDate date;
     private int eUsed;
     private double amount;
+    private int status;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -70,11 +71,12 @@ public class UsageHistory {
         this.amount = 0;
     }
 
-    public UsageHistory(LocalDate date, int eUsed, double amount, User user) {
+    public UsageHistory(LocalDate date, int eUsed, double amount, User user, int status) {
         this.date = date;
         this.eUsed = eUsed;
         this.amount = amount;
         this.user = user;
+        this.status = status;
     }
 
     // Getters and Setters
@@ -117,5 +119,13 @@ public class UsageHistory {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int getStatus(){
+        return this.status;
+    }
+
+    public void setStatus(int status){
+        this.status = status;
     }
 }

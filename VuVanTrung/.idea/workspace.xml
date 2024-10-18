@@ -5,10 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94e554b0-3ff2-46bb-8839-72a7547afab7" name="Changes" comment="create new spring boot and push">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/DTO/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/DTO/ApiResponseFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Repository/TierConfigRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Repository/TierConfigRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Controller/TierConfigController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Controller/TierConfigController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Controller/UsageHistoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Controller/UsageHistoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/DTO/AuthenticationResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/DTO/AuthenticationResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Entity/UsageHistory.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Entity/UsageHistory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Repository/UsageHistoryRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Repository/UsageHistoryRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/AuthenticationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/AuthenticationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/TierConfigService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/TierConfigService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/UsageHistoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/UsageHistoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/GlobalExceptionHandler.class.uniqueId5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/TierConfigController.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/TierConfigRepository.class.uniqueId3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/TierConfigService.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UsageHistoryController.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UsageHistoryController.class.uniqueId0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UsageHistoryService.class.uniqueId4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Controller/TierConfigController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Controller/TierConfigController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Controller/UsageHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Controller/UsageHistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/DTO/AuthenticationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/DTO/AuthenticationResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Entity/UsageHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Entity/UsageHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Repository/UsageHistoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Repository/UsageHistoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Service/AuthenticationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Service/TierConfigService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Service/TierConfigService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Service/UsageHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/Service/UsageHistoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/config/SecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,37 +113,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Gradle.Build VuVanTrung.executor": "Run",
-    "Gradle.VuVanTrung [:com.example.vuvantrung.AsyncDemoApplication.main()].executor": "Run",
-    "HTTP Request.generated-requests | #2.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.AsyncDemoApplication.executor": "Run",
-    "Spring Boot.VuVanTrungApplication.executor": "Run",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/trung/Documents/GitHub/JavaITS/VuVanTrung",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Gradle.Build VuVanTrung.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.VuVanTrung [:com.example.vuvantrung.AsyncDemoApplication.main()].executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #2.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AsyncDemoApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.VuVanTrungApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/trung/Documents/GitHub/JavaITS/VuVanTrung&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -174,7 +206,10 @@
       <workItem from="1728626447932" duration="15455000" />
       <workItem from="1728783462394" duration="296000" />
       <workItem from="1728798415257" duration="20445000" />
-      <workItem from="1728868839105" duration="39759000" />
+      <workItem from="1728868839105" duration="43554000" />
+      <workItem from="1729128600707" duration="4070000" />
+      <workItem from="1729136948076" duration="16874000" />
+      <workItem from="1729210152697" duration="54000" />
     </task>
     <task id="LOCAL-00001" summary="create new spring boot and push">
       <option name="closed" value="true" />
