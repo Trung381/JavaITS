@@ -12,13 +12,11 @@ public class NotificationController {
 
     private final MessageService messageService;
 
-    // Tiêm phụ thuộc thông qua Constructor Injection
     @Autowired
     public NotificationController(MessageService messageService) {
         this.messageService = messageService;
     }
 
-    // Endpoint xử lý yêu cầu gửi thông báo
     @GetMapping("/send")
     public String sendNotification(@RequestParam String message, @RequestParam String recipient) {
         // Gọi phương thức sendMessage từ messageService

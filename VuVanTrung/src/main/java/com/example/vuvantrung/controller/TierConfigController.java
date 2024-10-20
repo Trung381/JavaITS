@@ -14,22 +14,22 @@ public class TierConfigController {
     @Autowired
     private TierConfigService tierConfigService;
 
-    @PostMapping
+    @PostMapping("add")
     public ResponseEntity<TierConfig> createTierConfig(@RequestBody TierConfig tierConfig){
         return ResponseEntity.ok(tierConfigService.createTierConfig(tierConfig));
     }
 
-    @GetMapping
+    @GetMapping("get_all")
     public ResponseEntity<List<TierConfig>> getAllTierConfigs(){
         return ResponseEntity.ok(tierConfigService.getAllTierConfigs());
     }
 
-    @DeleteMapping("/{id}")
+    @GetMapping("/delete/{id}")
     public ResponseEntity<TierConfig> deleteTierConfigById(@PathVariable Long id){
         return ResponseEntity.ok(tierConfigService.deleteTierConfigById(id));
     }
 
-    @PutMapping("/{id}")
+    @PostMapping("/update/{id}")
     public ResponseEntity<TierConfig> updateTierConfig(@PathVariable Long id, @RequestBody TierConfig updatedTierConfig) {
         return ResponseEntity.ok(tierConfigService.updateTierConfig(id, updatedTierConfig));
     }

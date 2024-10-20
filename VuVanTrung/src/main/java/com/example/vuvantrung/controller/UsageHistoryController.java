@@ -19,14 +19,6 @@ public class UsageHistoryController {
     @Autowired
     UsageHistoryService usageHistoryService;
 
-//    @PostMapping("/create_usage_history")
-//    public ResponseEntity<UsageHistory> createUsageHistoryByAdmin(@RequestBody Map<String, Object> request) {
-//        return ResponseEntity.ok(usageHistoryService.saveUsage(
-//                (int) request.get("eUsed"),
-//                LocalDate.parse((String) request.get("date")),
-//                (int) request.get("userId")
-//        ));
-//    }
     @PostMapping("/create_usage_history")
     public Response<UsageHistory> createUsageHistoryByAdmin(@RequestBody Map<String, Object> request) {
 
@@ -42,12 +34,12 @@ public class UsageHistoryController {
         return ResponseEntity.ok(usageHistoryService.getAllUsageHistory());
     }
 
-    @DeleteMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public ResponseEntity<UsageHistory> deleteUsageHistoryById(@PathVariable Long id) {
         return ResponseEntity.ok(usageHistoryService.deleteUsageHistoryById(id));
     }
 
-    @PutMapping("/update/{id}")
+    @PostMapping("/update/{id}")
     public ResponseEntity<UsageHistory> updateUsageHistory(@PathVariable Long id, @RequestBody UsageHistory updatedUsageHistory) {
         return ResponseEntity.ok(usageHistoryService.updateUsageHistory(id, updatedUsageHistory));
     }
@@ -61,16 +53,9 @@ public class UsageHistoryController {
     public ResponseEntity<List<UsageHistory>> getUsageHistoryNotPaidByUserId(@PathVariable Integer id){
         return ResponseEntity.ok(usageHistoryService.getUsageHistoryHasNotPaiByIdUser(id));
     }
-    
-//    @GetMapping("/pay_electic_bill_by_id_user_and_month")
-//    public ResponseEntity<Optional<List<UsageHistory>>> payElectricBillByIdUserAndMonth(@RequestParam Integer id, @RequestParam int month) throws Exception {
-//        return ResponseEntity.ok(usageHistoryService.payElectricityBillHasNotPaidByUserIdAndMonth(id, month));
-//    }
 
     @GetMapping("/pay_electric_bill_by_id_user_and_month")
     public ResponseEntity<UsageHistory> payElectricBillByIdUserAndMonth(@RequestParam Integer id, @RequestParam int month) {
-
-//        return ResponseEntity.ok("Electric bill has been paid for user with ID " + id + " for month " + month);
         return ResponseEntity.ok(usageHistoryService.payElectricityBillHasNotPaidByUserIdAndMonth(id, month));
     }
 

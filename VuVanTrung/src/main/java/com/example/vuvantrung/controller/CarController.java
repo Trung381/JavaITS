@@ -22,23 +22,23 @@ public class CarController {
         return "Saved";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get_car/{id}")
     public @ResponseBody Optional<Car> getCarById(@PathVariable int id){
         return carService.getCarById(id);
     }
 
-    @GetMapping(path = "/all")
+    @GetMapping(path = "/get_all")
     public @ResponseBody Iterable<Car> getAllCars() {
         return carService.getAllCar();
     }
 
-    @PutMapping(path = "/update/{id}")
+    @PostMapping(path = "/update/{id}")
     public @ResponseBody String updateCar(@PathVariable Integer id, @RequestBody Car carDetails) {
         carService.updateCar(id, carDetails);
         return "Updated";
     }
 
-    @DeleteMapping(path = "/delete/{id}")
+    @GetMapping(path = "/delete/{id}")
     public @ResponseBody String deleteCar(@PathVariable Integer id) {
         carService.deleteCar(id);
         return "Deleted";

@@ -15,24 +15,24 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping
+    @GetMapping("/get_all_books")
     public List<Book> getAllBooks() {
         return bookService.getAllBooks();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get_book/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
         return bookService.getBookById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("add")
     public Book createBook(@RequestBody Book book) {
         return bookService.saveBook(book);
     }
 
-    @PutMapping("/{id}")
+    @PostMapping("/update/{id}")
     public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book bookDetails) {
         return bookService.getBookById(id).map(book -> {
             book.setTitle(bookDetails.getTitle());
@@ -44,7 +44,7 @@ public class BookController {
     }
 
 
-    @DeleteMapping("/{id}")
+    @GetMapping("/delete/{id}")
     public ResponseEntity<Object> deleteBook(@PathVariable Long id) {
         return bookService.getBookById(id).map(book -> {
             bookService.deleteBook(id);
@@ -52,19 +52,16 @@ public class BookController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
-    // Tìm sách theo tác giả
     @GetMapping("/author")
     public List<Book> getBooksByAuthor(@RequestParam String author) {
         return bookService.getBooksByAuthor(author);
     }
 
-    // Tìm sách có giá lớn hơn một giá trị cụ thể
-    @GetMapping("/priceGreaterThan")
+    @GetMapping("/price_greater_than")
     public List<Book> getBooksByPriceGreaterThan(@RequestParam Double price) {
         return bookService.getBooksByPriceGreaterThan(price);
     }
 
-    // Tìm sách theo tiêu đề và sắp xếp theo giá giảm dần
     @GetMapping("/search")
     public List<Book> getBooksByTitle(@RequestParam String title) {
         return bookService.getBooksByTitle(title);

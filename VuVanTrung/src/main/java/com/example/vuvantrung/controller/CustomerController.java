@@ -19,12 +19,12 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping
+    @GetMapping("get_all")
     public List<Customer> getAllUsers() {
         return customerService.getAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Customer> getUserById(@PathVariable Long id) {
         Optional<Customer> user = customerService.findById(id);
         return user.map(ResponseEntity::ok)
