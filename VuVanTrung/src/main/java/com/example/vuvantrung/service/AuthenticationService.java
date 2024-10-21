@@ -10,6 +10,7 @@ import com.example.vuvantrung.repository.UserRepository;
 import com.example.vuvantrung.entity.Role;
 import com.example.vuvantrung.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+@Slf4j
 @Service
 public class AuthenticationService {
 
@@ -32,7 +34,7 @@ public class AuthenticationService {
                                  AuthenticationManager authenticationManager,
                                  RoleRepository roleRepository,
                                  JwtService jwtService,
-                                 BlacklistedTokenRepository blacklistedTokenRepository) { // Thêm vào constructor
+                                 BlacklistedTokenRepository blacklistedTokenRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
@@ -42,7 +44,7 @@ public class AuthenticationService {
     }
 
     public User register(RegisterRequest request) {
-        Role role = roleRepository.findByName("USER"); // Lấy ra role có name = USER từ db
+        Role role = roleRepository.findByName("USER");
         final var user = new User(
                 request.firstname(),
                 request.lastname(),
@@ -53,6 +55,7 @@ public class AuthenticationService {
                 role
         );
         userRepository.save(user);
+        log.info("User has username {} is registered successfully", request.username());
         return user;
     }
 
@@ -65,7 +68,7 @@ public class AuthenticationService {
         var user = userRepository.findByUsername(request.username())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         final String token = jwtService.generateToken(user);
-//        return new AuthenticationResponse(token);
+        log.info("{} login successfully", request.username());
         return AuthenticationResponse.fromUser(
                 token,
                 user,  // Pass user object directly

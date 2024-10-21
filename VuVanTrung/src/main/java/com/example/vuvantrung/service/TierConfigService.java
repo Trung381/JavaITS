@@ -52,7 +52,6 @@ public class TierConfigService {
     }
 
     public TierConfig getTierConfigWithMaxUsage() {
-        // Business logic to get tier config with max usage
         return tierConfigRepository.findTierConfigWithMaxUsageNative();
     }
 }

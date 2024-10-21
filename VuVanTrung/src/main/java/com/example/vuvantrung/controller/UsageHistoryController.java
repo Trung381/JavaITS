@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping("/UsageHistory")
+@RequestMapping("/api/UsageHistory")
 public class UsageHistoryController {
     @Autowired
     UsageHistoryService usageHistoryService;

@@ -9,6 +9,7 @@ import com.example.vuvantrung.exception.UserNotFoundException;
 import com.example.vuvantrung.repository.UsageHistoryRepository;
 import com.example.vuvantrung.repository.UserRepository;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class UsageHistoryService {
     @Autowired
@@ -59,13 +61,13 @@ public class UsageHistoryService {
             if (user.isPresent()) {
                 double cost = calculateCost(eUsed);
                 UsageHistory usageHistory = new UsageHistory(date, eUsed, cost, user.get(),0);
-//                return new Response<>(true, "success", HttpStatus.OK ,usageHistory);
+                log.info("Usage bill in {} has cost {} of user has id {} is saved", date.getMonthValue(), cost, userId);
                 return ResponseFactory.successWithData(usageHistory);
             } else {
-                throw new UserNotFoundException("Người dùng với ID: " + userId + " không tồn tại.");
+                log.warn("Create usage bill fail !! User has ID: {} not found.", userId);
+                throw new UserNotFoundException("Create usage bill fail !! User has ID: " + userId +" not found.");
             }
         } else {
-//            return new Response<>(false, "Invalid request", HttpStatus.BAD_REQUEST, null);
             return ResponseFactory.errorWithData(HttpStatus.BAD_REQUEST, "Invalid request", null);
         }
     }
@@ -83,9 +85,10 @@ public class UsageHistoryService {
         if (usageHistoryOptional.isPresent()) {
             UsageHistory usageHistory = usageHistoryOptional.get();
             usageHistoryRepository.deleteById(id);
+            log.info("Usage bill has id {} is deleted", id);
             return usageHistory;
         } else {
-            throw new RuntimeException("Lịch sử sử dụng điện không tồn tại với ID: " + id);
+            throw new RuntimeException("Not found usage history has id : " + id);
         }
     }
 
@@ -98,6 +101,7 @@ public class UsageHistoryService {
             existingUsageHistory.seteUsed(updatedUsageHistory.geteUsed());
             existingUsageHistory.setAmount(updatedUsageHistory.getAmount());
 
+            log.info("Usage bill in {} has cost {} of user has id {} is updated", existingUsageHistory.getDate().getMonthValue(), existingUsageHistory.getAmount(), existingUsageHistory.getUser().getId());
             return usageHistoryRepository.save(existingUsageHistory);
         } else {
             throw new RuntimeException("Không tìm thấy UsageHistory với ID: " + id);
@@ -112,14 +116,6 @@ public class UsageHistoryService {
         return usageHistoryRepository.findAllByUserIdAndNotPaid(id);
     }
 
-//    public Optional<List<UsageHistory>> payElectricityBillHasNotPaidByUserIdAndMonth(Integer id, int month) throws Exception {
-//        usageHistoryRepository.payElectricityBillHasNotPaidByUserIdAndMonth(id, month);
-//        Optional<List<UsageHistory>> billHadPaid = Optional.ofNullable(usageHistoryRepository.findElectricityBillHasPaidByUserIdAndMonth(id, month));
-//        if(!billHadPaid.isPresent()){
-//            throw new Exception("bill not found");
-//        }
-//        return billHadPaid;
-//    }
     @Transactional
     public UsageHistory payElectricityBillHasNotPaidByUserIdAndMonth(Integer id, int month){
         usageHistoryRepository.payElectricityBillHasNotPaidByUserIdAndMonth(id, month);

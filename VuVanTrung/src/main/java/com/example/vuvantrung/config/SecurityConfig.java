@@ -1,18 +1,5 @@
 package com.example.vuvantrung.config;
 
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        UserDetails admin = User.withUsername("admin")
-//                .password("{noop}admin")
-//                .roles("ADMIN")
-//                .build();
-//        UserDetails user = User.withUsername("user")
-//                .password("{noop}user")
-//                .roles("USER")
-//                .build();
-//        return new InMemoryUserDetailsManager(admin, user);
-//    }
-
 import com.example.vuvantrung.repository.UserRepository;
 import com.example.vuvantrung.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
@@ -102,11 +89,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/api/v1/auth/**", "/test_async/**").permitAll()
                         .requestMatchers("/api/books").permitAll()
-                        .requestMatchers("/TierConfig/**").hasRole("ADMIN")
-                        .requestMatchers("/UsageHistory/usage_history_by_user_id/{id}").hasRole("USER")
-                        .requestMatchers("/UsageHistory/usage_history_not_paid_by_user_id/{id}").hasRole("USER")
-                        .requestMatchers("/UsageHistory/pay_electric_bill_by_id_user_and_month").hasRole("USER")
-                        .requestMatchers("/UsageHistory/create_usage_history").hasRole("ADMIN")
+                        .requestMatchers("/api/TierConfig/**").hasRole("ADMIN")
+                        .requestMatchers("/api/UsageHistory/usage_history_by_user_id/{id}").hasRole("USER")
+                        .requestMatchers("/api/UsageHistory/usage_history_not_paid_by_user_id/{id}").hasRole("USER")
+                        .requestMatchers("/api/UsageHistory/pay_electric_bill_by_id_user_and_month").hasRole("USER")
+                        .requestMatchers("/api/UsageHistory/create_usage_history").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
