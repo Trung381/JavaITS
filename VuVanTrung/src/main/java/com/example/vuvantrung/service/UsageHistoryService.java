@@ -54,7 +54,7 @@ public class UsageHistoryService {
     }
 
 
-    public Response<UsageHistory> saveUsage(int eUsed, LocalDate date, int userId) {
+    public Response<UsageHistory> saveUsage(Integer eUsed, LocalDate date, int userId) {
         Optional<User> user = userRepository.findById(userId);
         Optional<UsageHistory> bill = findBillByUserIdAndMonth(userId, date.getMonthValue());
         if(bill.isEmpty()){
@@ -62,7 +62,7 @@ public class UsageHistoryService {
                 double cost = calculateCost(eUsed);
                 UsageHistory usageHistory = new UsageHistory(date, eUsed, cost, user.get(),0);
                 log.info("Usage bill in {} has cost {} of user has id {} is saved", date.getMonthValue(), cost, userId);
-                return ResponseFactory.successWithData(usageHistory);
+                return ResponseFactory.successWithData(usageHistoryRepository.save(usageHistory));
             } else {
                 log.warn("Create usage bill fail !! User has ID: {} not found.", userId);
                 throw new UserNotFoundException("Create usage bill fail !! User has ID: " + userId +" not found.");
@@ -119,7 +119,6 @@ public class UsageHistoryService {
     @Transactional
     public UsageHistory payElectricityBillHasNotPaidByUserIdAndMonth(Integer id, int month){
         usageHistoryRepository.payElectricityBillHasNotPaidByUserIdAndMonth(id, month);
-        UsageHistory billHadPaid = usageHistoryRepository.findElectricityBillHasPaidByUserIdAndMonth(id, month);
-        return billHadPaid;
+        return usageHistoryRepository.findElectricityBillHasPaidByUserIdAndMonth(id, month);
     }
 }

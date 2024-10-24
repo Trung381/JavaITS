@@ -14,22 +14,22 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/UsageHistory")
+@RequestMapping("/api/usage-history")
 public class UsageHistoryController {
     @Autowired
     UsageHistoryService usageHistoryService;
 
-    @PostMapping("/create_usage_history")
+    @PostMapping("/add")
     public Response<UsageHistory> createUsageHistoryByAdmin(@RequestBody Map<String, Object> request) {
 
         return usageHistoryService.saveUsage(
                 (int) request.get("eUsed"),
                 LocalDate.parse((String) request.get("date")),
-                (int) request.get("userId")
+                (Integer) request.get("userId")
         );
     }
 
-    @GetMapping("/get_all_history")
+    @GetMapping("/get-all")
     public ResponseEntity<List<UsageHistory>> getAllUsageHistory() {
         return ResponseEntity.ok(usageHistoryService.getAllUsageHistory());
     }
@@ -44,17 +44,17 @@ public class UsageHistoryController {
         return ResponseEntity.ok(usageHistoryService.updateUsageHistory(id, updatedUsageHistory));
     }
 
-    @GetMapping("/usage_history_by_user_id/{id}")
+    @GetMapping("/usage-history-by-user-id/{id}")
     public ResponseEntity<List<UsageHistory>> getUsageHistoryByUserId(@PathVariable Integer id) {
         return ResponseEntity.ok(usageHistoryService.getUsageHistoryByUserId(id));
     }
 
-    @GetMapping("/usage_history_not_paid_by_user_id/{id}")
+    @GetMapping("/usage-history-not-paid-by-user-id/{id}")
     public ResponseEntity<List<UsageHistory>> getUsageHistoryNotPaidByUserId(@PathVariable Integer id){
         return ResponseEntity.ok(usageHistoryService.getUsageHistoryHasNotPaiByIdUser(id));
     }
 
-    @GetMapping("/pay_electric_bill_by_id_user_and_month")
+    @GetMapping("/pay-electric-bill-by-id-user-and-month")
     public ResponseEntity<UsageHistory> payElectricBillByIdUserAndMonth(@RequestParam Integer id, @RequestParam int month) {
         return ResponseEntity.ok(usageHistoryService.payElectricityBillHasNotPaidByUserIdAndMonth(id, month));
     }

@@ -22,12 +22,12 @@ public class CarController {
         return "Saved";
     }
 
-    @GetMapping("/get_car/{id}")
+    @GetMapping("/get/{id}")
     public @ResponseBody Optional<Car> getCarById(@PathVariable int id){
         return carService.getCarById(id);
     }
 
-    @GetMapping(path = "/get_all")
+    @GetMapping(path = "/get-all")
     public @ResponseBody Iterable<Car> getAllCars() {
         return carService.getAllCar();
     }

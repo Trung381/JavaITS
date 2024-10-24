@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/TierConfig")
+@RequestMapping("/admin/api/tier-config")
 public class TierConfigController {
     @Autowired
     private TierConfigService tierConfigService;
@@ -19,7 +19,7 @@ public class TierConfigController {
         return ResponseEntity.ok(tierConfigService.createTierConfig(tierConfig));
     }
 
-    @GetMapping("get_all")
+    @GetMapping("get-all")
     public ResponseEntity<List<TierConfig>> getAllTierConfigs(){
         return ResponseEntity.ok(tierConfigService.getAllTierConfigs());
     }

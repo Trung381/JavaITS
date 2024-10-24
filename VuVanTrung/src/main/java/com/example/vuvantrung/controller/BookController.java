@@ -15,12 +15,12 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping("/get_all_books")
+    @GetMapping("/get-all")
     public List<Book> getAllBooks() {
         return bookService.getAllBooks();
     }
 
-    @GetMapping("/get_book/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
         return bookService.getBookById(id)
                 .map(ResponseEntity::ok)
@@ -57,7 +57,7 @@ public class BookController {
         return bookService.getBooksByAuthor(author);
     }
 
-    @GetMapping("/price_greater_than")
+    @GetMapping("/price-greater-than")
     public List<Book> getBooksByPriceGreaterThan(@RequestParam Double price) {
         return bookService.getBooksByPriceGreaterThan(price);
     }
