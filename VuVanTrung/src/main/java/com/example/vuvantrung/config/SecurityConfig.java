@@ -94,7 +94,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/api/v1/auth/**", "/test_async/**").permitAll()
-                        .requestMatchers("/admin/**").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                        .requestMatchers("/api/tier-config/**").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                        .requestMatchers("/api/usage-history/**").hasRole("USER")
                         .requestMatchers("/user/**").permitAll()
                         .anyRequest().authenticated()
                 )

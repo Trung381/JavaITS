@@ -64,10 +64,10 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return AuthorityUtils.createAuthorityList("ROLE_" + role.getName());
-        return this.getRole().getPermissions().stream()
-                .map(permission -> new SimpleGrantedAuthority(permission.getName()))
-                .collect(Collectors.toSet());
+        return AuthorityUtils.createAuthorityList("ROLE_" + role.getName());
+//        return this.getRole().getPermissions().stream()
+//                .map(permission -> new SimpleGrantedAuthority(permission.getName()))
+//                .collect(Collectors.toSet());
     }
 
     @Override

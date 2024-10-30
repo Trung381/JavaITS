@@ -6,7 +6,7 @@ import com.example.vuvantrung.entity.TierConfig;
 import com.example.vuvantrung.entity.UsageHistory;
 import com.example.vuvantrung.entity.User;
 import com.example.vuvantrung.exception.UserNotFoundException;
-import com.example.vuvantrung.repository.UsageHistoryRepository;
+import com.example.vuvantrung.repository.usageHistory.UsageHistoryRepository;
 import com.example.vuvantrung.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
