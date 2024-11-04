@@ -3,11 +3,9 @@ package com.example.vuvantrung.entity;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "user")
@@ -21,13 +19,14 @@ public class User implements UserDetails {
     private String email;
     private String username;
     private String address;
-    private String passwd;
+    private String password;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String firstname, String lastname, String email, String username, String address, String passwd, Role role) {
         this.firstname = firstname;
@@ -35,7 +34,7 @@ public class User implements UserDetails {
         this.email = email;
         this.username = username;
         this.address = address;
-        this.passwd = passwd;
+        this.password = passwd;
         this.role = role;
     }
 
@@ -47,7 +46,7 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return passwd;
+        return password;
     }
 
     public void setUsername(String username) {
@@ -105,4 +104,9 @@ public class User implements UserDetails {
     public Integer getId() {
         return this.id;
     }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
 }
+

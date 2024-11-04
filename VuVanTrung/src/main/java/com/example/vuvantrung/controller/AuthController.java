@@ -2,6 +2,7 @@ package com.example.vuvantrung.controller;
 
 import com.example.vuvantrung.DTO.AuthenticationRequest;
 import com.example.vuvantrung.DTO.AuthenticationResponse;
+import com.example.vuvantrung.DTO.ChangePasswordRequest;
 import com.example.vuvantrung.DTO.RegisterRequest;
 import com.example.vuvantrung.repository.BlacklistedTokenRepository;
 import com.example.vuvantrung.service.AuthenticationService;
@@ -55,6 +56,12 @@ public class AuthController {
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<String> changePassword(@RequestBody @Valid ChangePasswordRequest request) {
+        String result = authenticationService.changePassword(request);
+        return ResponseEntity.ok(result);
     }
 }
 

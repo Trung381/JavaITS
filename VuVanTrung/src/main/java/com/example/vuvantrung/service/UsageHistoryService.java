@@ -7,7 +7,7 @@ import com.example.vuvantrung.entity.UsageHistory;
 import com.example.vuvantrung.entity.User;
 import com.example.vuvantrung.exception.UserNotFoundException;
 import com.example.vuvantrung.repository.usageHistory.UsageHistoryRepository;
-import com.example.vuvantrung.repository.UserRepository;
+import com.example.vuvantrung.repository.user.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +56,7 @@ public class UsageHistoryService {
 
     public Response<UsageHistory> saveUsage(Integer eUsed, LocalDate date, int userId) {
         Optional<User> user = userRepository.findById(userId);
+//        Optional<User> user = userRepository.findUserById(userId);
         Optional<UsageHistory> bill = findBillByUserIdAndMonth(userId, date.getMonthValue());
         if(bill.isEmpty()){
             if (user.isPresent()) {

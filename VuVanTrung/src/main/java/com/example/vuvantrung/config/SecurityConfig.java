@@ -1,10 +1,9 @@
 package com.example.vuvantrung.config;
 
-import com.example.vuvantrung.repository.UserRepository;
+import com.example.vuvantrung.repository.user.UserRepository;
 import com.example.vuvantrung.security.CustomPermissionEvaluator;
 import com.example.vuvantrung.security.JwtAuthenticationFilter;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
@@ -23,7 +22,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Component;
 
 // --------------------------- this is good version for running app without jwt
 //@Configuration

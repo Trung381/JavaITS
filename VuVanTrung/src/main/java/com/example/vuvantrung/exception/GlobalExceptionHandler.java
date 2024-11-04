@@ -73,7 +73,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleAuthenticationException(AuthenticationException ex){
         Map<String, Object> exception = new HashMap<>();
         exception.put("message", ex.getMessage());
-        log.error("Có người nào đang cố gắng truy cập tài khoản mầy đó, báo chính quyền đi");
+        log.error("Có người nào đang cố gắng truy cập tài khoản đó, báo chính quyền đi");
         return new ResponseEntity<>(exception, HttpStatus.UNAUTHORIZED);
     }
 }

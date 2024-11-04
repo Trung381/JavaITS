@@ -3,7 +3,7 @@ package com.example.vuvantrung.service;
 import com.example.vuvantrung.entity.UsageHistory;
 import com.example.vuvantrung.entity.User;
 import com.example.vuvantrung.repository.usageHistory.UsageHistoryRepository;
-import com.example.vuvantrung.repository.UserRepository;
+import com.example.vuvantrung.repository.user.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

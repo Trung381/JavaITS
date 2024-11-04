@@ -2,11 +2,12 @@ package com.example.vuvantrung.service;
 
 import com.example.vuvantrung.DTO.AuthenticationRequest;
 import com.example.vuvantrung.DTO.AuthenticationResponse;
+import com.example.vuvantrung.DTO.ChangePasswordRequest;
 import com.example.vuvantrung.DTO.RegisterRequest;
 import com.example.vuvantrung.entity.BlacklistedToken;
 import com.example.vuvantrung.repository.BlacklistedTokenRepository;
 import com.example.vuvantrung.repository.RoleRepository;
-import com.example.vuvantrung.repository.UserRepository;
+import com.example.vuvantrung.repository.user.UserRepository;
 import com.example.vuvantrung.entity.Role;
 import com.example.vuvantrung.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
@@ -89,6 +90,21 @@ public class AuthenticationService {
             throw new RuntimeException("Invalid token");
         }
         return header.substring(7);
+    }
+
+    public String changePassword(ChangePasswordRequest request) {
+        // Sử dụng trực tiếp các trường của `request` như `request.username()`, `request.currentPassword()`, và `request.newPassword()`
+        User user = userRepository.findByUsername(request.username())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(request.currentPassword(), user.getPassword())) {
+            throw new RuntimeException("Current password is incorrect");
+        }
+
+        user.setPassword(passwordEncoder.encode(request.newPassword()));
+        userRepository.save(user);
+
+        return "Password changed successfully";
     }
 
 }
