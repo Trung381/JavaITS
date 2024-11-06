@@ -5,53 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94e554b0-3ff2-46bb-8839-72a7547afab7" name="Changes" comment="create new spring boot and push">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/DTO/ChangePasswordRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/config/QuartzConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/config/SampleJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/repository/user/UserRepositoryCustom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/repository/user/UserRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/sha1-checksums.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/config/QuartzListenerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/scheduler/EmailJob.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/scheduler/EmailJobListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/scheduler/EmailTriggerListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Controller/AuthController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Entity/QUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Entity/QUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Exception/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Exception/GlobalExceptionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Repository/UserRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/AuthenticationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/AuthenticationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/EmailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/EmailService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/UsageHistoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/UsageHistoryService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/Service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/com/example/vuvantrung/entity/QUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/com/example/vuvantrung/entity/QUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/CustomerRepositoryImpl.class.uniqueId1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/QuerydslConfig.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/config/QuartzConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/config/QuartzConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/vuvantrung/config/SampleJob.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application-local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/logback-spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/QuartzConfig.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/QuartzConfig.class.uniqueId0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/DTO/AuthenticationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/DTO/AuthenticationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/repository/user/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/service/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/config/QuartzConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/config/QuartzConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/config/SampleJob.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/service/MyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/service/MyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/service/MyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/service/MyServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/service/UsageHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/service/UsageHistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vuvantrung/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logback-spring.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,6 +243,10 @@
       <workItem from="1730085335256" duration="3500000" />
       <workItem from="1730210855856" duration="17539000" />
       <workItem from="1730424782869" duration="17073000" />
+      <workItem from="1730691161795" duration="2886000" />
+      <workItem from="1730715648378" duration="443000" />
+      <workItem from="1730789682317" duration="5399000" />
+      <workItem from="1730858297043" duration="770000" />
     </task>
     <task id="LOCAL-00001" summary="create new spring boot and push">
       <option name="closed" value="true" />

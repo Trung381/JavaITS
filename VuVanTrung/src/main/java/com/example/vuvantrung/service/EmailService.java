@@ -23,7 +23,7 @@ public class EmailService {
     private UserRepository userRepository;
 
 //    @Scheduled(fixedRate = 2000) // 600000ms = 10 phút
-    @Scheduled(cron = "0 0 0 */30 * *")
+//    @Scheduled(cron = "0 0 0 */30 * *")
     public void sendEmails() throws Exception {
         List<UsageHistory> usageHistories = usageHistoryRepository.findByUserIsNotNull();
 

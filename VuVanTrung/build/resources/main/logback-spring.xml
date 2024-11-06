@@ -21,9 +21,9 @@
         </encoder>
     </appender>
 
-    <!-- Cấu hình cho môi trường dev -->
+    <!-- Cấu hình cho môi trường local -->
     <springProfile name="local">
-        <root level="ERROR">
+        <root level="INFO">
             <appender-ref ref="CONSOLE" />
             <appender-ref ref="FILE" />
         </root>
