@@ -1,7 +1,7 @@
 package com.example.vuvantrung.service;
 
 import com.example.vuvantrung.entity.User;
-import com.example.vuvantrung.repository.BlacklistedTokenRepository;
+import com.example.vuvantrung.repository.blacklistedToken.BlacklistedTokenRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

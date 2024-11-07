@@ -18,9 +18,9 @@ public class Permission {
     @Column(length = 255)
     private String description;
 
-    @ManyToMany(mappedBy = "permissions")
-    @JsonBackReference
-    private Set<Role> roles;
+//    @ManyToMany(mappedBy = "permissions")
+//    @JsonBackReference
+//    private Set<Role> roles;
 
     // Constructors
     public Permission() {}
@@ -58,11 +58,11 @@ public class Permission {
         this.description = description;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+//    public Set<Role> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(Set<Role> roles) {
+//        this.roles = roles;
+//    }
 }

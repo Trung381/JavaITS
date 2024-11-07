@@ -1,9 +1,11 @@
 package com.example.vuvantrung.service;
 
-import com.example.vuvantrung.entity.Permission;
-import com.example.vuvantrung.entity.Role;
-import com.example.vuvantrung.repository.PermissionRepository;
-import com.example.vuvantrung.repository.RoleRepository;
+import com.example.vuvantrung.entity.*;
+import com.example.vuvantrung.repository.permission.PermissionRepository;
+import com.example.vuvantrung.repository.role.RoleRepository;
+import com.example.vuvantrung.repository.rolePermission.RolePermissionRepository;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.antlr.v4.runtime.misc.LogManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +17,17 @@ public class RoleService {
 
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
+    private final JPAQueryFactory queryFactory;
+    private final RolePermissionRepository rolePermissionRepository;
 
-    public RoleService(RoleRepository roleRepository, PermissionRepository permissionRepository) {
+    public RoleService(RoleRepository roleRepository, PermissionRepository permissionRepository,
+                       JPAQueryFactory queryFactory, RolePermissionRepository rolePermissionRepository) {
         this.roleRepository = roleRepository;
         this.permissionRepository = permissionRepository;
+        this.queryFactory = queryFactory;
+        this.rolePermissionRepository = rolePermissionRepository;
     }
+
 
     public Role createRole(Role role) {
         return roleRepository.save(role);
@@ -48,23 +56,38 @@ public class RoleService {
         roleRepository.deleteById(id);
     }
 
-    @Transactional
-    public Role assignPermissionToRole(Integer roleId, Integer permissionId) {
-        Role role = roleRepository.findById(roleId)
-                .orElseThrow(() -> new RuntimeException("Role not found with id " + roleId));
-        Permission permission = permissionRepository.findById(permissionId)
-                .orElseThrow(() -> new RuntimeException("Permission not found with id " + permissionId));
-        role.getPermissions().add(permission);
-        return roleRepository.save(role);
+    public void assignPermissionToRole(Integer roleId, Integer permissionId) {
+        // Kiểm tra sự tồn tại của Role và Permission
+        if (!roleRepository.existsById(roleId)) {
+            throw new RuntimeException("Role not found with id " + roleId);
+        }
+        if (!permissionRepository.existsById(permissionId)) {
+            throw new RuntimeException("Permission not found with id " + permissionId);
+        }
+
+        RolePermission rolePermission = new RolePermission(roleId, permissionId);
+        rolePermissionRepository.save(rolePermission);
     }
 
-    @Transactional
-    public Role removePermissionFromRole(Integer roleId, Integer permissionId) {
-        Role role = roleRepository.findById(roleId)
-                .orElseThrow(() -> new RuntimeException("Role not found with id " + roleId));
-        Permission permission = permissionRepository.findById(permissionId)
-                .orElseThrow(() -> new RuntimeException("Permission not found with id " + permissionId));
-        role.getPermissions().remove(permission);
-        return roleRepository.save(role);
+
+    public void removePermissionFromRole(Integer roleId, Integer permissionId) {
+        RolePermission rolePermission = rolePermissionRepository
+                .findByRoleIdAndPermissionId(roleId, permissionId)
+                .orElseThrow(() -> new RuntimeException("Relation not found"));
+
+        rolePermissionRepository.delete(rolePermission);
+    }
+
+
+    public List<Permission> getPermissionsByRoleId(Integer roleId) {
+        QPermission permission = QPermission.permission;
+        QRolePermission rolePermission = QRolePermission.rolePermission;
+
+        return queryFactory.select(permission)
+                .from(permission)
+                .innerJoin(rolePermission)
+                .on(permission.id.eq(rolePermission.permissionId))
+                .where(rolePermission.roleId.eq(roleId))
+                .fetch();
     }
 }

@@ -4,7 +4,7 @@ import com.example.vuvantrung.DTO.AuthenticationRequest;
 import com.example.vuvantrung.DTO.AuthenticationResponse;
 import com.example.vuvantrung.DTO.ChangePasswordRequest;
 import com.example.vuvantrung.DTO.RegisterRequest;
-import com.example.vuvantrung.repository.BlacklistedTokenRepository;
+import com.example.vuvantrung.repository.blacklistedToken.BlacklistedTokenRepository;
 import com.example.vuvantrung.service.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;

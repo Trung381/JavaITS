@@ -15,29 +15,24 @@ public class Role {
     @Column(unique = true, nullable = false, length = 50)
     private String name;
 
-    // Mối quan hệ nhiều-nhiều với Permission
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "role_permission",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "permission_id")
-    )
-    @JsonManagedReference
-    private Set<Permission> permissions;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "role_permission",
+//            joinColumns = @JoinColumn(name = "role_id"),
+//            inverseJoinColumns = @JoinColumn(name = "permission_id")
+//    )
+//    @JsonManagedReference
+//    private Set<Permission> permissions;
+//
+//    @OneToMany(mappedBy = "role")
+//    @JsonBackReference
+//    private Set<User> users;
 
-    // Mối quan hệ một-nhiều với User
-    @OneToMany(mappedBy = "role")
-    @JsonBackReference
-    private Set<User> users;
-
-    // Constructors
     public Role() {}
 
     public Role(String name) {
         this.name = name;
     }
-
-    // Getters and Setters
 
     public Integer getId() {
         return id;
@@ -47,8 +42,6 @@ public class Role {
         this.id = id;
     }
 
-    // ... other getters and setters ...
-
     public String getName() {
         return name;
     }
@@ -57,19 +50,19 @@ public class Role {
         this.name = name;
     }
 
-    public Set<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(Set<Permission> permissions) {
-        this.permissions = permissions;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
+//    public Set<Permission> getPermissions() {
+//        return permissions;
+//    }
+//
+//    public void setPermissions(Set<Permission> permissions) {
+//        this.permissions = permissions;
+//    }
+//
+//    public Set<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(Set<User> users) {
+//        this.users = users;
+//    }
 }

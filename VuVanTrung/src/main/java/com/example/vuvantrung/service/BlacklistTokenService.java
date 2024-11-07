@@ -1,6 +1,6 @@
 package com.example.vuvantrung.service;
 
-import com.example.vuvantrung.repository.BlacklistedTokenRepository;
+import com.example.vuvantrung.repository.blacklistedToken.BlacklistedTokenRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -16,7 +16,7 @@ public class BlacklistTokenService {
 
     @Async
     public void removeTokensAsync() {
-        blacklistedTokenRepository.deleteExpiredTokens();
+        blacklistedTokenRepository.deleteExpiredTokensDSL();
         log.info("Clear token in database after a long day");
     }
 
