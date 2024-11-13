@@ -1,7 +1,6 @@
 package com.example.vuvantrung.service;
 
-import com.example.vuvantrung.DTO.Response;
-import com.example.vuvantrung.DTO.ResponseFactory;
+import com.example.vuvantrung.dto.BaseResponse;
 import com.example.vuvantrung.entity.TierConfig;
 import com.example.vuvantrung.entity.UsageHistory;
 import com.example.vuvantrung.entity.User;
@@ -11,7 +10,6 @@ import com.example.vuvantrung.repository.user.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -53,23 +51,23 @@ public class UsageHistoryService {
         return cost;
     }
 
-
-    public Response<UsageHistory> saveUsage(Integer eUsed, LocalDate date, int userId) {
+    public BaseResponse<UsageHistory> saveUsage(int eUsed, LocalDate date, int userId) {
+        System.err.println("hmmm soos dieenj ddax dung: " + eUsed);
         Optional<User> user = userRepository.findById(userId);
-//        Optional<User> user = userRepository.findUserById(userId);
         Optional<UsageHistory> bill = findBillByUserIdAndMonth(userId, date.getMonthValue());
         if(bill.isEmpty()){
             if (user.isPresent()) {
                 double cost = calculateCost(eUsed);
                 UsageHistory usageHistory = new UsageHistory(date, eUsed, cost, user.get(),0);
                 log.info("Usage bill in {} has cost {} of user has id {} is saved", date.getMonthValue(), cost, userId);
-                return ResponseFactory.successWithData(usageHistoryRepository.save(usageHistory));
+                UsageHistory savedUsageHistory = usageHistoryRepository.save(usageHistory);
+                return BaseResponse.success(savedUsageHistory, "Usage history created successfully.");
             } else {
                 log.warn("Create usage bill fail !! User has ID: {} not found.", userId);
                 throw new UserNotFoundException("Create usage bill fail !! User has ID: " + userId +" not found.");
             }
         } else {
-            return ResponseFactory.errorWithData(HttpStatus.BAD_REQUEST, "Invalid request", null);
+            return BaseResponse.error("A usage history for this user and month already exists.", "Invalid request");
         }
     }
 
@@ -89,7 +87,7 @@ public class UsageHistoryService {
             log.info("Usage bill has id {} is deleted", id);
             return usageHistory;
         } else {
-            throw new RuntimeException("Not found usage history has id : " + id);
+            throw new RuntimeException("Not found usage history with id : " + id);
         }
     }
 
@@ -103,9 +101,10 @@ public class UsageHistoryService {
             existingUsageHistory.setAmount(updatedUsageHistory.getAmount());
 
             log.info("Usage bill in {} has cost {} of user has id {} is updated", existingUsageHistory.getDate().getMonthValue(), existingUsageHistory.getAmount(), existingUsageHistory.getUser().getId());
-            return usageHistoryRepository.save(existingUsageHistory);
+            UsageHistory savedUsageHistory = usageHistoryRepository.save(existingUsageHistory);
+            return savedUsageHistory;
         } else {
-            throw new RuntimeException("Không tìm thấy UsageHistory với ID: " + id);
+            throw new RuntimeException("UsageHistory not found with ID: " + id);
         }
     }
 

@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class BookManager {
-
+    private static final String PATH_FILE = "Task5/src/books.txt";
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -16,7 +16,7 @@ public class BookManager {
         System.out.print("Nhập năm xuất bản: ");
         int yearPublished = scanner.nextInt();
 
-        try (FileWriter writer = new FileWriter("Task5/src/books.txt", true)) {
+        try (FileWriter writer = new FileWriter(PATH_FILE, true)) {
             writer.write("Tên sách: " + bookTitle + "\n");
             writer.write("Tác giả: " + author + "\n");
             writer.write("Năm xuất bản: " + yearPublished + "\n");

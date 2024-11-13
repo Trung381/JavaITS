@@ -19,11 +19,15 @@ public class QPermission extends EntityPathBase<Permission> {
 
     public static final QPermission permission = new QPermission("permission");
 
+    public final DateTimePath<java.util.Date> createdAt = createDateTime("createdAt", java.util.Date.class);
+
     public final StringPath description = createString("description");
 
     public final NumberPath<Integer> id = createNumber("id", Integer.class);
 
     public final StringPath name = createString("name");
+
+    public final DateTimePath<java.util.Date> updatedAt = createDateTime("updatedAt", java.util.Date.class);
 
     public QPermission(String variable) {
         super(Permission.class, forVariable(variable));

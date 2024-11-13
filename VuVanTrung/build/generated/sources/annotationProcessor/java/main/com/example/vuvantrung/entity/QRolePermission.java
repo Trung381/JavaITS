@@ -19,11 +19,23 @@ public class QRolePermission extends EntityPathBase<RolePermission> {
 
     public static final QRolePermission rolePermission = new QRolePermission("rolePermission");
 
+    public final BooleanPath canApprove = createBoolean("canApprove");
+
+    public final BooleanPath canDelete = createBoolean("canDelete");
+
+    public final BooleanPath canView = createBoolean("canView");
+
+    public final BooleanPath canWrite = createBoolean("canWrite");
+
+    public final DateTimePath<java.util.Date> createdAt = createDateTime("createdAt", java.util.Date.class);
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final NumberPath<Integer> permissionId = createNumber("permissionId", Integer.class);
 
     public final NumberPath<Integer> roleId = createNumber("roleId", Integer.class);
+
+    public final DateTimePath<java.util.Date> updatedAt = createDateTime("updatedAt", java.util.Date.class);
 
     public QRolePermission(String variable) {
         super(RolePermission.class, forVariable(variable));

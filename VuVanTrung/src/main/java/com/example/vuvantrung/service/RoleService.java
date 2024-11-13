@@ -56,6 +56,7 @@ public class RoleService {
         roleRepository.deleteById(id);
     }
 
+    @Transactional
     public void assignPermissionToRole(Integer roleId, Integer permissionId) {
         // Kiểm tra sự tồn tại của Role và Permission
         if (!roleRepository.existsById(roleId)) {
@@ -69,7 +70,7 @@ public class RoleService {
         rolePermissionRepository.save(rolePermission);
     }
 
-
+    @Transactional
     public void removePermissionFromRole(Integer roleId, Integer permissionId) {
         RolePermission rolePermission = rolePermissionRepository
                 .findByRoleIdAndPermissionId(roleId, permissionId)
@@ -80,14 +81,6 @@ public class RoleService {
 
 
     public List<Permission> getPermissionsByRoleId(Integer roleId) {
-        QPermission permission = QPermission.permission;
-        QRolePermission rolePermission = QRolePermission.rolePermission;
-
-        return queryFactory.select(permission)
-                .from(permission)
-                .innerJoin(rolePermission)
-                .on(permission.id.eq(rolePermission.permissionId))
-                .where(rolePermission.roleId.eq(roleId))
-                .fetch();
+        return rolePermissionRepository.getPermissionsByRoleId(roleId);
     }
 }

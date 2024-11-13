@@ -4,7 +4,12 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.Set;
+import lombok.*;
 
+import java.util.Date;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "role")
 public class Role {
@@ -14,6 +19,12 @@ public class Role {
 
     @Column(unique = true, nullable = false, length = 50)
     private String name;
+
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
 //    @ManyToMany(fetch = FetchType.EAGER)
 //    @JoinTable(
@@ -33,36 +44,4 @@ public class Role {
     public Role(String name) {
         this.name = name;
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-//    public Set<Permission> getPermissions() {
-//        return permissions;
-//    }
-//
-//    public void setPermissions(Set<Permission> permissions) {
-//        this.permissions = permissions;
-//    }
-//
-//    public Set<User> getUsers() {
-//        return users;
-//    }
-//
-//    public void setUsers(Set<User> users) {
-//        this.users = users;
-//    }
 }

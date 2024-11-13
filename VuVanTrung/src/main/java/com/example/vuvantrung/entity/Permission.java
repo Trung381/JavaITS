@@ -2,8 +2,13 @@ package com.example.vuvantrung.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.Date;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "permission")
 public class Permission {
@@ -18,6 +23,12 @@ public class Permission {
     @Column(length = 255)
     private String description;
 
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
 //    @ManyToMany(mappedBy = "permissions")
 //    @JsonBackReference
 //    private Set<Role> roles;
@@ -27,34 +38,6 @@ public class Permission {
 
     public Permission(String name, String description) {
         this.name = name;
-        this.description = description;
-    }
-
-    // Getters and Setters
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    // ... other getters and setters ...
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
     }
 

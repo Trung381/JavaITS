@@ -1,5 +1,6 @@
 package com.example.vuvantrung.repository.role;
 
+import com.example.vuvantrung.entity.Permission;
 import com.example.vuvantrung.entity.Role;
 import java.util.List;
 

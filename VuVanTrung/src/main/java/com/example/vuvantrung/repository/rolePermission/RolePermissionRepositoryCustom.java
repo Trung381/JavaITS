@@ -5,5 +5,5 @@ import com.example.vuvantrung.entity.Permission;
 import java.util.List;
 
 public interface RolePermissionRepositoryCustom {
-    List<Permission> findPermissionsByRoleId(Integer roleId);
+    List<Permission> getPermissionsByRoleId(Integer roleId);
 }

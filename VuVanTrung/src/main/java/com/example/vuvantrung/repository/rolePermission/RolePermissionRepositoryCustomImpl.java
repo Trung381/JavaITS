@@ -17,7 +17,7 @@ public class RolePermissionRepositoryCustomImpl implements RolePermissionReposit
     }
 
     @Override
-    public List<Permission> findPermissionsByRoleId(Integer roleId) {
+    public List<Permission> getPermissionsByRoleId(Integer roleId) {
         QPermission permission = QPermission.permission;
         QRolePermission rolePermission = QRolePermission.rolePermission;
 

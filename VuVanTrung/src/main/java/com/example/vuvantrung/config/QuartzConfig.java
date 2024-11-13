@@ -23,7 +23,7 @@ public class QuartzConfig {
                 .withIdentity("sampleTrigger")  // Đặt tên cho trigger
                 .startNow()
 //                .endAt()
-                .withSchedule(CronScheduleBuilder.cronSchedule("0/59 * * * * ?"))
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 0 15 * * ?"))
                 .build();
                 //                .withSchedule(SimpleScheduleBuilder.simpleSchedule()
                 //                        .withIntervalInSeconds(5)  // Lặp lại mỗi 15 phút

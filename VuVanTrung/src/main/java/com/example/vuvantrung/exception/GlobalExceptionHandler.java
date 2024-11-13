@@ -1,15 +1,15 @@
 package com.example.vuvantrung.exception;
 
+import com.example.vuvantrung.dto.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,62 +18,60 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-
+    // Xử lý ngoại lệ UserNotFoundException
     @ExceptionHandler(UserNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<String> handleUserNotFound(UserNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<BaseResponse<Void>> handleUserNotFound(UserNotFoundException ex) {
+        log.error("UserNotFoundException: ", ex);
+        BaseResponse<Void> response = BaseResponse.error(ex.getMessage(), "User not found.");
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
+    // Xử lý ngoại lệ InvalidCredentialsException
     @ExceptionHandler(InvalidCredentialsException.class)
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ResponseEntity<String> handleInvalidCredentials(InvalidCredentialsException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+    public ResponseEntity<BaseResponse<Void>> handleInvalidCredentials(InvalidCredentialsException ex) {
+        log.error("InvalidCredentialsException: ", ex);
+        BaseResponse<Void> response = BaseResponse.error(ex.getMessage(), "Invalid credentials.");
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 
-    // Handling validation errors
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
-//        Map<String, String> errors = new HashMap<>();
-//
-//        // Extract field-specific error messages
-//        ex.getBindingResult().getAllErrors().forEach(error -> {
-//            String fieldName = ((FieldError) error).getField();
-//            String errorMessage = error.getDefaultMessage();
-//            errors.put(fieldName, errorMessage);
-//        });
-//
-//        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-//    }
-    @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity<Object> handleValidationException(MethodArgumentNotValidException e){
-        Map<String, Object> validation = new HashMap<>();
+    // Xử lý các lỗi validation (MethodArgumentNotValidException)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<BaseResponse<Map<String, String>>> handleValidationException(MethodArgumentNotValidException ex){
+        log.error("MethodArgumentNotValidException: ", ex);
         Map<String, String> errors = new HashMap<>();
-        e.getBindingResult().getAllErrors().forEach(error -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        validation.put("httpStatus", e.getStatusCode());
-        validation.put("throwable", e.getCause());
-//        validation.put("detail", e.getBody());
-//        validation.put("message", Objects.requireNonNull(e.getFieldError()).getDefaultMessage());
-        validation.put("deatils", errors);
-        return new ResponseEntity<>(validation, HttpStatus.BAD_REQUEST);
+
+        // Lấy các lỗi validation theo trường
+        for (FieldError error : ex.getBindingResult().getFieldErrors()) {
+            errors.put(error.getField(), error.getDefaultMessage());
+        }
+
+        BaseResponse<Map<String, String>> response = BaseResponse.error("Validation failed.", "Invalid input data.");
+        // Gán lỗi chi tiết vào data
+        response.setData(errors);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
+    // Xử lý ngoại lệ AuthenticationException
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<BaseResponse<Void>> handleAuthenticationException(AuthenticationException ex){
+        log.error("AuthenticationException: ", ex);
+        BaseResponse<Void> response = BaseResponse.error("Unauthorized access.", "Authentication failed.");
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+    }
+
+    // Xử lý các ngoại lệ khác
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<String> handleGeneralException(Exception ex) {
-        return new ResponseEntity<>("An error occurred: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<BaseResponse<Void>> handleGeneralException(Exception ex) {
+        log.error("Exception: ", ex);
+        BaseResponse<Void> response = BaseResponse.error("Internal Server Error", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler (AuthenticationException.class)
-    public ResponseEntity<Object> handleAuthenticationException(AuthenticationException ex){
-        Map<String, Object> exception = new HashMap<>();
-        exception.put("message", ex.getMessage());
-        log.error("Có người nào đang cố gắng truy cập tài khoản đó, báo chính quyền đi");
-        return new ResponseEntity<>(exception, HttpStatus.UNAUTHORIZED);
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<String> handleHttpMessageNotReadable(HttpMessageNotReadableException ex) {
+        if (ex.getCause() instanceof java.time.format.DateTimeParseException) {
+            return new ResponseEntity<>("Invalid date format. Please use 'yyyy-MM-dd'.", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>("Invalid request data.", HttpStatus.BAD_REQUEST);
     }
 }

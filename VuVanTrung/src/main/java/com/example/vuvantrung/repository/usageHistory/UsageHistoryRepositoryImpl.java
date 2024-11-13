@@ -57,6 +57,7 @@ public class UsageHistoryRepositoryImpl implements UsageHistoryRepositoryCustom 
 
     @Override
     public Optional<UsageHistory> findElectricityBillByUserIdAndMonth(Integer id, int month) {
+        System.err.println("hjjs c" + month);
         QUsageHistory qUsageHistory = QUsageHistory.usageHistory;
         UsageHistory usageHistory = queryFactory.selectFrom(qUsageHistory)
                 .where(qUsageHistory.user.id.eq(id)

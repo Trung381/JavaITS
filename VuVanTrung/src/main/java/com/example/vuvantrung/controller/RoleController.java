@@ -1,5 +1,6 @@
 package com.example.vuvantrung.controller;
 
+import com.example.vuvantrung.entity.Permission;
 import com.example.vuvantrung.entity.Role;
 import com.example.vuvantrung.service.RoleService;
 import org.springframework.http.ResponseEntity;
@@ -49,17 +50,21 @@ public class RoleController {
         return ResponseEntity.noContent().build();
     }
 
-//    // Endpoint để gán Permission cho Role
-//    @PostMapping("/{roleId}/permissions/{permissionId}")
-//    public ResponseEntity<Role> assignPermissionToRole(@PathVariable Integer roleId, @PathVariable Integer permissionId) {
-//        Role updatedRole = roleService.assignPermissionToRole(roleId, permissionId);
-//        return ResponseEntity.ok(updatedRole);
-//    }
-//
-//    // Endpoint để xoá Permission khỏi Role
-//    @DeleteMapping("/{roleId}/permissions/{permissionId}")
-//    public ResponseEntity<Role> removePermissionFromRole(@PathVariable Integer roleId, @PathVariable Integer permissionId) {
-//        Role updatedRole = roleService.removePermissionFromRole(roleId, permissionId);
-//        return ResponseEntity.ok(updatedRole);
-//    }
+    @PostMapping("/permissions/{roleId}/{permissionId}")
+    public ResponseEntity<Void> assignPermissionToRole(@PathVariable Integer roleId, @PathVariable Integer permissionId) {
+        roleService.assignPermissionToRole(roleId, permissionId);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/permissions/{roleId}/{permissionId}")
+    public ResponseEntity<Void> removePermissionFromRole(@PathVariable Integer roleId, @PathVariable Integer permissionId) {
+        roleService.removePermissionFromRole(roleId, permissionId);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/permissions/{roleId}")
+    public ResponseEntity<List<Permission>> getPermissionsByRoleId(@PathVariable Integer roleId) {
+        List<Permission> permissions = roleService.getPermissionsByRoleId(roleId);
+        return ResponseEntity.ok(permissions);
+    }
 }

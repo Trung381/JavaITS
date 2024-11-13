@@ -4,13 +4,20 @@ public class BubbleSort {
 
     public static void sortArray(int[] array) {
         int n = array.length;
+        boolean swapped; //  theo dõi hoán đổi
         for (int i = 0; i < n - 1; i++) {
+            swapped = false; // Khởi tạo lại
             for (int j = 0; j < n - i - 1; j++) {
                 if (array[j] > array[j + 1]) {
                     int temp = array[j];
                     array[j] = array[j + 1];
                     array[j + 1] = temp;
+                    swapped = true; // Có sự hoán đổi
                 }
+            }
+            // Nếu không có sự hoán đổi, thoát khỏi vòng lặp
+            if (!swapped) {
+                break;
             }
         }
     }

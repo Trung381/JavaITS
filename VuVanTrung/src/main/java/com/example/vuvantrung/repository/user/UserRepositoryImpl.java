@@ -30,5 +30,4 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
                 .fetch();
     }
 
-
 }

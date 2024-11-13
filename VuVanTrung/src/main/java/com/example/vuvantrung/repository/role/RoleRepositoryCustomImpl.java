@@ -1,8 +1,7 @@
 package com.example.vuvantrung.repository.role;
 
 
-import com.example.vuvantrung.entity.QRole;
-import com.example.vuvantrung.entity.Role;
+import com.example.vuvantrung.entity.*;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +23,5 @@ public class RoleRepositoryCustomImpl implements RoleRepositoryCustom {
                 .where(role.name.containsIgnoreCase(someCriteria))
                 .fetch();
     }
+
 }
